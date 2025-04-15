@@ -1,0 +1,262 @@
+<style>
+    :root {
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.content-g {
+    width: 100%;
+    margin: auto;
+
+    }
+   @media (min-width: 40em) {
+        .content-g{
+            width: 40em;
+        }
+    }
+    @media (min-width: 80em) {
+       .content-g{
+        width: 80em;
+       }
+    }
+
+
+.gallery {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    margin: auto;
+}
+    .galleryItem {
+        flex: 1 1 auto;
+        margin: 0.3em;
+        position: relative;
+        width: 12em;
+        height: 13em;
+        overflow: hidden;
+ }
+        @media (min-width: 40em) {
+            .galleryItem{
+                width: 10em;
+                height: 10em;
+            }
+        }
+
+        @media (min-width: 80em) {
+           .galleryItem{
+            width: 17em;
+            height: 17em;
+           }
+        }
+
+        .galleryItem:hover img {
+            transform: scale(1.2);
+        }
+    
+
+
+a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: .2s;
+    }
+figcaption {
+    
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1em;
+    }
+.lightBoxOverlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(#000, .7);
+    }
+    .closeButton {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+
+        color: #000;
+        background-color: #fff;
+        font-size: 1.5em;
+        border-radius: 1em;
+        padding: 0.44em 0.66em;
+        height: 2em;
+        width: 2em;
+        
+        cursor: pointer;
+        transition: .2s;
+    }    
+    .classButton:hover {
+            color: #fff;
+            background-color: #000;
+        }
+
+        @media (min-width: 80em) {
+            .classButton:hover{
+                font-size: 2em;
+
+                top: 1em;
+                right: 1em;
+
+                height: 2em;
+                width: 2em;
+            }
+        }
+    
+
+    .container-g {
+        margin: 0;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 1em;
+    }
+        @media (min-width: 40em) {
+            .container-g{
+                padding: 3em;
+            }
+        }
+
+        @media (min-width: 80em) {
+            .container-g{
+                padding: 5em;
+            }
+        }
+    
+
+    .galleryItem img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    figcaption {
+        margin-top: 1em;
+        padding: 0.5em 1em;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.436);
+    
+        
+    }
+
+</style>
+<div class="container-b">
+    <div class="content-g">
+        <h1>Responsive image gallery</h1>
+        <div class="gallery">
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/back.jpg" alt=""></a>
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/b2.jpg" alt=""></a>
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/back1.jpeg" alt="Leasure"></a>            
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/back7.jpg" alt="Pretty colors"></a>
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/a8.jpg" alt="Architecture"></a>
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/a7.jpg" alt="Beach"></a>
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/a6.jpg" alt="Mountains"></a>
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/a5.jpg" alt="Starry sky"></a>
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/a3.jpg" alt="Forest"></a>
+            </figure>
+            <figure class="galleryItem">
+                <a href="#"><img src="assets/images/a2.jpg" alt="City"></a>
+                <figcaption>daniel</figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+<script>
+    let galleryItems = document.querySelectorAll('.galleryItem');
+
+    const closeLightBox = (galleryItem, overlay) => {
+    let originLinkTag = galleryItem.querySelector('a');
+    let image = overlay.querySelector('img');
+    let caption = overlay.querySelector('figcaption');    
+    
+    // move image and caption back to their original parents
+    originLinkTag.appendChild(image);
+    galleryItem.appendChild(caption);
+    
+    // remove the light box overlay
+    document.body.removeChild(overlay)
+}
+
+    const openLightBox = (galleryItem) => {
+    // create the overlay to darken the page
+        let lightBoxOverlay = document.createElement('div');
+        lightBoxOverlay.classList.add('lightBoxOverlay');
+
+        // create the close button
+        let lightBoxClose = document.createElement('a');
+        lightBoxClose.innerText = 'X';
+        lightBoxClose.classList.add('closeButton');
+        lightBoxOverlay.appendChild(lightBoxClose);    
+        caption.classList.add('daniel');
+        // create a container for the image
+        let lightBoxImageContainer = document.createElement('figure');
+        lightBoxImageContainer.classList.add('container');
+        lightBoxOverlay.appendChild(lightBoxImageContainer);
+
+        // take the already existing image and move it into the overlay container
+        let image = galleryItem.querySelector('img');
+        lightBoxImageContainer.appendChild(image);
+        
+        // take the already existing figcaption and move it into the overlay container
+        let caption = galleryItem.querySelector('figcaption');
+        lightBoxImageContainer.appendChild(caption);
+        
+        // add a closing routine to close button
+        lightBoxClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeLightBox(galleryItem, lightBoxOverlay);
+        });
+        
+        // display the overlay
+        document.body.appendChild(lightBoxOverlay);
+}
+
+galleryItems.forEach(el => {
+    let linkTag = el.querySelector('a');
+    linkTag.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLightBox(el);
+    });
+});
+
+</script>
